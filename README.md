@@ -6,7 +6,7 @@ OSCeleton Library for use in processing.
 INSTALL
 -------
 
-Add this code to the libraries folder inside you Processing Sketch directory
+Add this folder to the libraries folder inside you Processing Sketch directory
 
 USAGE
 -----
