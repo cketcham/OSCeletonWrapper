@@ -18,7 +18,7 @@ setup your kinect to send skeleton data. More info on how to do that here:
 
 Once you have that set up, start osceleton on a port
 
-    ./osceleton -p 123451
+    ./osceleton -p 12345
     
 In your processing sketch create a new OSCeletonWrapper object
 
