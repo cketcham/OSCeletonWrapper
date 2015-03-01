@@ -29,6 +29,8 @@ package skyra.osceleton;
 
 import oscP5.OscMessage;
 import oscP5.OscP5;
+import oscP5.OscEventListener;
+import oscP5.OscStatus;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ import java.util.ArrayList;
  * 
  * @author cketcham
  */
-public class OSCeletonWrapper {
+public class OSCeletonWrapper implements OscEventListener {
 
     private final PApplet myParent;
     private final OscP5 oscP5;
@@ -52,7 +54,8 @@ public class OSCeletonWrapper {
     public OSCeletonWrapper(PApplet theParent, int port) {
         myParent = theParent;
 
-        oscP5 = new OscP5(this, port);
+        oscP5 = new OscP5(theParent, port);
+        oscP5.addListener(this);
         for (int i = 0; i < 4; i++) {
             mSkeletons.add(new Skeleton(myParent, i));
         }
@@ -75,7 +78,7 @@ public class OSCeletonWrapper {
         Float z = null;
         Skeleton closest = null;
         for (Skeleton sk : mSkeletons) {
-            if (sk.get("head").z != 0 && z != null && z > sk.get("head").z) {
+            if (sk.isVisible() && sk.get("head").z != 0 && (z == null || z > sk.get("head").z)) {
                 closest = sk;
                 z = sk.get("head").z;
             }
@@ -113,10 +116,11 @@ public class OSCeletonWrapper {
     }
 
     /* incoming osc message. */
-    void oscEvent(OscMessage theOscMessage) {
-        // print("### received an osc message."+theOscMessage);
-        // print(" addrpattern: "+theOscMessage.addrPattern());
-        // println(" typetag: "+theOscMessage.typetag());
+    @Override
+    public void oscEvent(OscMessage theOscMessage) {
+        // System.out.print("### received an osc message."+theOscMessage);
+        // System.out.print(" addrpattern: "+theOscMessage.addrPattern());
+        // System.out.println(" typetag: "+theOscMessage.typetag());
 
         String addr = theOscMessage.addrPattern();
 
@@ -126,7 +130,7 @@ public class OSCeletonWrapper {
             int user = theOscMessage.get(1).intValue();
             Skeleton sk = ensureSkeleton(user);
 
-            sk.updateJoint(joint, new Joint(theOscMessage));
+            sk.get(joint).updateLocation(theOscMessage);
         } else if ("/new_user".equals(addr) || "/reenter_user".equals(addr)) {
             int user = theOscMessage.get(0).intValue();
             ensureSkeleton(user);
@@ -134,5 +138,10 @@ public class OSCeletonWrapper {
             int user = theOscMessage.get(0).intValue();
             removeSkeleton(user);
         }
+    }
+
+    @Override
+    public void oscStatus(OscStatus status) {
+
     }
 }

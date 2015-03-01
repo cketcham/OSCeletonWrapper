@@ -55,7 +55,7 @@ public class Joint {
         z = z_;
     }
 
-    public Joint(OscMessage theOscMessage) {
+    public void updateLocation(OscMessage theOscMessage) {
         x = theOscMessage.get(2).floatValue() * myParent.width;
         y = theOscMessage.get(3).floatValue() * myParent.height;
         z = theOscMessage.get(4).floatValue();

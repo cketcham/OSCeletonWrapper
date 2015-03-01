@@ -1,4 +1,4 @@
-import com.skyra.osceleton.*;
+import skyra.osceleton.*;
 
 import toxi.geom.*;
 import toxi.physics2d.*;
@@ -112,7 +112,7 @@ void draw() {
       if (sk.isVisible()) {
 
         // Draw an elipse for each joint
-        HashMap < String, Joint > joints = sk.getJointSet();
+        HashMap < String, Joint > joints = sk.getJoints();
         for (String name: joints.keySet()) {
           Joint j = joints.get(name);
           fill(255);

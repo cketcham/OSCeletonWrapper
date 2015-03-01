@@ -59,25 +59,6 @@ public class Skeleton {
     }
 
     /**
-     * Update the location of a Joint. Normally, the {@link OSCeletonWrapper} object will
-     * handle this for you.
-     * 
-     * <p>
-     * Name can be one of:
-     * head, neck, torso, waist, l_collar, l_shoulder,
-     * l_elbow, l_wrist, l_hand, l_fingertip, r_collar, r_shoulder,
-     * r_elbow, r_wrist, r_hand, r_fingertip, l_hip, l_knee,
-     * l_ankle, l_foot, r_hip, r_knee, r_ankle, r_foot;
-     * </p>
-     * 
-     * @param name
-     * @param joint
-     */
-    public void updateJoint(String name, Joint joint) {
-        mJoints.put(name, joint);
-    }
-
-    /**
      * Get a specific joint
      * 
      * <p>
@@ -93,7 +74,11 @@ public class Skeleton {
      */
     public Joint get(String name) {
         Joint j = mJoints.get(name);
-        return (j == null) ? new Joint(myParent) : j;
+        if (j == null) {
+            j = new Joint(myParent);
+            mJoints.put(name, j);
+        }
+        return j;
     }
     
     /**
@@ -115,7 +100,15 @@ public class Skeleton {
     /**
      * @return the names of all the joints available.
      */
-    public HashMap<String, Joint> getJointSet() {
+    public HashMap<String, Joint> getJoints() {
         return mJoints;
+    }
+
+    public void draw() {
+        for (String name : getJoints().keySet()) {
+            Joint j = get(name);
+            myParent.fill(255);
+            myParent.ellipse(j.x, j.y, 15, 15);
+        }
     }
 }
