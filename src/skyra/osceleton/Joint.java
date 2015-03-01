@@ -22,10 +22,10 @@
  * 
  * @author      Cameron Ketcham http://skyra.github.io
  * @modified    09/23/2013
- * @version     1.0.0 (1)
+ * @version     1.0.1 (1)
  */
 
-package com.cketcham.osceleton;
+package skyra.osceleton;
 
 import oscP5.OscMessage;
 import processing.core.PApplet;

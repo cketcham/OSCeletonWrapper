@@ -22,10 +22,10 @@
  * 
  * @author      Cameron Ketcham http://skyra.github.io
  * @modified    09/23/2013
- * @version     1.0.0 (1)
+ * @version     1.0.1 (1)
  */
 
-package com.cketcham.osceleton;
+package skyra.osceleton;
 
 import oscP5.OscMessage;
 import oscP5.OscP5;
@@ -69,7 +69,6 @@ public class OSCeletonWrapper {
      * Finds the closest skeleton to the sensor. This implementation just looks
      * at the Z-coordinate of the heads of all the people it can see.
      * 
-     * @param skeletons
      * @return the closest skeleton
      */
     public Skeleton getClosest() {

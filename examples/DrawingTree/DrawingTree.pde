@@ -1,4 +1,4 @@
-import com.cketcham.osceleton.*;
+import com.skyra.osceleton.*;
 
 import toxi.geom.*;
 import toxi.physics2d.*;
