@@ -14,7 +14,7 @@ USAGE
 This is a processing library which listens to OSC messages sent from
 [OSCeleton](https://github.com/Sensebloom/OSCeleton). You will need to
 setup your kinect to send skeleton data. More info on how to do that here:
-[http://skyra.github.io/blog/Kinect-Processing/](skyra.github.io/blog/Kinect-Processing/)
+[http://skyra.github.io/blog/Kinect-Processing/](http://skyra.github.io/blog/Kinect-Processing/)
 
 Once you have that set up, start osceleton on a port
 
