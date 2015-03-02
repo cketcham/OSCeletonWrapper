@@ -110,14 +110,9 @@ void draw() {
   for (Skeleton sk : osceleton.getSkeletons()) {
     if (sk != null) {
       if (sk.isVisible()) {
-
         // Draw an elipse for each joint
-        HashMap < String, Joint > joints = sk.getJoints();
-        for (String name: joints.keySet()) {
-          Joint j = joints.get(name);
-          fill(255);
-          ellipse(j.x, j.y, 15, 15);
-        }
+        fill(255);
+        sk.draw();
 
         // Setup attraction to hands
         setupHandGravity(sk);

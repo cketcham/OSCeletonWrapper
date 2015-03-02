@@ -104,10 +104,12 @@ public class Skeleton {
         return mJoints;
     }
 
+    /**
+     * Draws the joints of the skeleton as circles
+     */
     public void draw() {
         for (String name : getJoints().keySet()) {
             Joint j = get(name);
-            myParent.fill(255);
             myParent.ellipse(j.x, j.y, 15, 15);
         }
     }
